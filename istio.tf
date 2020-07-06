@@ -1,19 +1,12 @@
-# Configure Helm
-resource "null_resource" "aws_get_kubeconfig" {
-  provisioner "local-exec" {
-    command = "aws eks --region us-east-1 update-kubeconfig --name eks-chapter"
-  }
-} 
-
+# Install istio
 resource "null_resource" "helm_init" {
   provisioner "local-exec" {
-    command = "helm init"
+    command = "export KUBECONFIG=${module.eks.kubeconfig_filename}"
+  }
+  provisioner "local-exec" {
+    command = "istioctl manifest apply --set profile=demo" # Do not use DEMO on Production
+  }
+  provisioner "local-exec" {
+    command = "kubectl label namespace default istio-injection=enabled"
   }
 } 
-
-# Install istio
-# resource "null_resource" "helm_init" {
-#   provisioner "local-exec" {
-#     command = "helm init"
-#   }
-# } 
