@@ -1,17 +1,18 @@
-# Objetivo
+# About
 
-Configurar EKS na AWS e Istio.
+Terraform example projeto to provision EKS on AWS, configure Helm and install Istio.
 
-# Pré-Requisitos:
+# Requirements
 
-- Instalar [HELM](https://helm.sh/docs/intro/install/)
-- Instalr [KUBECTL](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+Install:
 
-# Configuração AWS
+- AWSCLI: 
+- HELM: https://helm.sh/docs/intro/install/
+- KUBECTL: https://kubernetes.io/docs/tasks/tools/install-kubectl/
 
-A configuração da vpc e eks são feitos através dos modulos:
+## Terraform Modules
 
 - VPC: https://github.com/terraform-aws-modules/terraform-aws-vpc
 - EKS: https://github.com/terraform-aws-modules/terraform-aws-eks
 
-Sendo o EKS provisionado com Nodes Spot Instance EC2.
+> EKS are provisioned with Spot node instances on EC2. Read about Terraform-Aws-Eks module and configure as you need.
